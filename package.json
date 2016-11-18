@@ -1,15 +1,23 @@
 {
-  "name": "port-scanning",
-  "version": "0.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "findbook",
+  "version": "1.0.0",
+  "description": "ahihi",
+  "main": "findEbook.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "aaaa"
   },
-  "author": "VietJS <info@vietjs.com> (http://vietjs.com/)",
+  "repository": {
+    "type": "git",
+    "url": "https://git.heroku.com/findbook.git"
+  },
+  "keywords": [
+    "heroku"
+  ],
+  "author": "Nara",
   "license": "ISC",
   "dependencies": {
-    "evilscan": "0.0.9",
-    "express": "^4.4.0"
+    "botbuilder": "^3.4.4",
+    "facebook-chat-api": "^1.2.0",
+    "restify": "^4.3.0"
   }
 }
