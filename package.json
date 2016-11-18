@@ -1,0 +1,23 @@
+{
+  "name": "findbook",
+  "version": "1.0.0",
+  "description": "ahihi",
+  "main": "findEbook.js",
+  "scripts": {
+    "test": "aaaa"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.heroku.com/findbook.git"
+  },
+  "keywords": [
+    "heroku"
+  ],
+  "author": "Nara",
+  "license": "ISC",
+  "dependencies": {
+    "botbuilder": "^3.4.4",
+    "facebook-chat-api": "^1.2.0",
+    "restify": "^4.3.0"
+  }
+}
