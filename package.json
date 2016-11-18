@@ -5,7 +5,7 @@
   "main": "findEbook.js",
   "scripts": {
     "test": "aaaa"
-  },
+ , "start":"node findEbook.js" },
   "repository": {
     "type": "git",
     "url": "https://github.com/leductienttkt/findbook"
