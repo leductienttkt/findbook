@@ -16,8 +16,11 @@
   "author": "Nara",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "botbuilder": "^3.4.4",
+    "express": "^4.14.0",
     "facebook-chat-api": "^1.2.0",
+    "morgan": "^1.7.0",
     "restify": "^4.3.0"
   }
 }
