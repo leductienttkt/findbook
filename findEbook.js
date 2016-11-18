@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
   res.send("Home page. Server running okay.");
 });
 
-// –‚y l‡ o?n code ? t?o Webhook
+// √ê√¢y l√† √∞o?n code √∞? t?o Webhook
 app.get('/webhook', function(req, res) {
   if (req.query['hub.verify_token'] === 'tiendien35') {
     res.send(req.query['hub.challenge']);
@@ -25,7 +25,7 @@ app.get('/webhook', function(req, res) {
   res.send('Error, wrong validation token');
 });
 
-// X? l? khi cÛ ng˝?i nh?n tin cho bot
+// X? l? khi c√≥ ng√Ω?i nh?n tin cho bot
 app.post('/webhook', function(req, res) {
   var entries = req.body.entry;
   for (var entry of entries) {
@@ -36,8 +36,8 @@ app.post('/webhook', function(req, res) {
         // If user send text
         if (message.message.text) {
           var text = message.message.text;
-          console.log(text); // In tin nh?n ng˝?i d˘ng
-          sendMessage(senderId, "Tui l‡ bot ‚y: " + text);
+          console.log(text); // In tin nh?n ng√Ω?i d√πng
+          sendMessage(senderId, "Tui l√† bot √∞√¢y: " + text);
         }
       }
     }
@@ -47,7 +47,7 @@ app.post('/webhook', function(req, res) {
 });
 
 
-// G?i thÙng tin t?i REST API ? tr? l?i
+// G?i th√¥ng tin t?i REST API √∞? tr? l?i
 function sendMessage(senderId, message) {
   request({
     url: 'https://graph.facebook.com/v2.6/me/messages',
@@ -66,9 +66,9 @@ function sendMessage(senderId, message) {
   });
 }
 
-app.set('port', process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 3002);
-app.set('ip', process.env.OPENSHIFT_NODEJS_IP || process.env.IP || "127.0.0.1");
+//app.set('port', process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 3002);
+//app.set('ip', process.env.OPENSHIFT_NODEJS_IP || process.env.IP || "127.0.0.1");
 
-server.listen(app.get('port'), app.get('ip'), function() {
-  console.log("Chat bot server listening at %s:%d ", app.get('ip'), app.get('port'));
-});
+//server.listen(app.get('port'), app.get('ip'), function() {
+  //console.log("Chat bot server listening at %s:%d ", app.get('ip'), app.get('port'));
+//});
