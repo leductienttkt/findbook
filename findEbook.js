@@ -55,7 +55,7 @@ app.post('/webhook', function(req, res) {
 // G?i thông tin t?i REST API ð? tr? l?i
 function sendMessage(senderId, message) {
 	  
-	  var kq;
+	 var kq = "jang";
 	  request({url: bookAPI + message, json: true}, function(err, res, ebooks) {
         if (err) {
           throw err;
