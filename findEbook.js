@@ -56,6 +56,7 @@ app.post('/webhook', function(req, res) {
 function sendMessage(senderId, message) {
 	
 	var kg="";
+	
 	request({url: bookAPI + message, json: true}, function(err, res, ebooks) {
         if (err) {
           throw err;
@@ -67,9 +68,9 @@ function sendMessage(senderId, message) {
             //res.send("Title: " + item.volumeInfo.title);
             //res.send("previewLink: " + item.volumeInfo.previewLink);
 			kq += item.volumeInfo.title + " \n";
-          }
+          
         });
-      });
+      
 	  
 	request({
     url: 'https://graph.facebook.com/v2.6/me/messages',
