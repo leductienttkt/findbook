@@ -61,13 +61,12 @@ function sendMessage(senderId, message) {
         if (err) {
           throw err;
         }
-
         var index = 0;
-		item = items.getElementById(1);
-            //res.send("Ebook: " + ++index + "\n");
-            //res.send("Title: " + item.volumeInfo.title);
-            //res.send("previewLink: " + item.volumeInfo.previewLink);
-			kq += item.volumeInfo.title + " \n";
+		ebooks.items.forEach(function (item) {
+          if (index < 5) {
+            kq += item.volumeInfo.previewLink +"\ n";
+          }
+        });
           
         });
       
