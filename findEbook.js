@@ -91,7 +91,7 @@ app.post('/webhook', function(req, res) {
 function sendMessage(senderId, where) {
 	  
 	 //var kq = "jang";
-	 request({url: "http://api.openweathermap.org/data/2.5/weather?q="+ +where+ "&appid=e254547bde07039221451d1862e383ca", json: true}, function(err, res, wt) {
+	 request({url: "http://api.openweathermap.org/data/2.5/weather?q="+where+"&appid=e254547bde07039221451d1862e383ca", json: true}, function(err, res, wt) {
         if (err) {
           throw err;
         }
