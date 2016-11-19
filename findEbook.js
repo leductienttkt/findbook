@@ -66,10 +66,10 @@ function sendMessage(senderId, message) {
         // return 5 ebooks
         ebooks.items.forEach(function (item) {
           if (index < 5) {
-            res.send("Ebook: " + ++index + "\n");
-            res.send("Title: " + item.volumeInfo.title);
-            res.send("previewLink: " + item.volumeInfo.previewLink);
-			kq = item.volumeInfo.title;
+            //res.send("Ebook: " + ++index + "\n");
+            //res.send("Title: " + item.volumeInfo.title);
+            //res.send("previewLink: " + item.volumeInfo.previewLink);
+			kq += item.volumeInfo.title + " \n";
           }
         });
       });
