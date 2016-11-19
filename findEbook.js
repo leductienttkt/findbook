@@ -96,10 +96,20 @@ function sendMessage(senderId, where) {
           throw err;
         }
 		var kq = "ko tim thay";//
-
+		var a ="";
         try{
+			var i = 0;
+			
+			wt.weather.items.forEach(function (item) {
+				if(i<1)
+				{
+					a = item.main;
+					i++;
+				}
+			}
+        
 						kq = wt.name +"\n" 
-							+ "Thời tiết hiện tại: " + wt.weather.getElementById(0).main +" m \n"
+							+ "Thời tiết hiện tại: " + a +" m \n"
 							+ "Nhiệt độ hiện tại: " + (parseInt(wt.main.temp) -273)  + " độ C \n"
 							+ "Nhiệt độ tối đa: " + (parseInt(wt.main.temp_min) -273)  + " độ C \n"
 							+ "Nhiệt độ tối thiểu: " +(parseInt(wt.main.temp_max) -273)  + " độ C \n"
