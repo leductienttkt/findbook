@@ -106,7 +106,7 @@ function sendMessage(senderId, where) {
 					a = item.main;
 					i++;
 				}
-			}
+			});
         
 						kq = wt.name +"\n" 
 							+ "Thời tiết hiện tại: " + a +" m \n"
