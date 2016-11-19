@@ -107,8 +107,8 @@ function sendMessage(senderId, message) {
 							id: senderId
 					},
 					message: {
-							text: wt.name
-							text: wt.weather.description
+							text: wt.name +"\n" + wt.weather.description
+							
 					},
 				}
       });  
