@@ -108,6 +108,7 @@ function sendMessage(senderId, message) {
 					},
 					message: {
 							text: wt.name
+							text: wt.weather.description
 					},
 				}
       });  
