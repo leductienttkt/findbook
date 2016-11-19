@@ -96,7 +96,8 @@ function sendMessage(senderId, where) {
           throw err;
         }
 		var kq = "ko tim thay";
-        if (wt != null) {
+
+        try{
 						kq = wt.name +"\n" 
 							+ "Nhiệt độ hiện tại: " + (parseInt(wt.main.temp) -273)  + " độ C \n"
 							+ "Nhiệt độ tối đa: " + (parseInt(wt.main.temp_min) -273)  + " độ C \n"
@@ -106,6 +107,11 @@ function sendMessage(senderId, where) {
 							+ "Mây che phủ: " + wt.clouds.all +" % \n"
 							+ "Tầm nhìn xa: " + wt.visibility +" m \n"
 		}
+		catch(e)
+		{
+			kq = "ko tim thay!";
+		}
+		
 		request({
 			url: 'https://graph.facebook.com/v2.6/me/messages',
 			qs: {
