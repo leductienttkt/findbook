@@ -66,6 +66,7 @@ function sendMessage(senderId, message) {
         // return 5 ebooks
         ebooks.items.forEach(function (item) {
           if (index < 5) {
+			  index++;
             kq += item.volumeInfo.title;
           }
         });
