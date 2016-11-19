@@ -104,8 +104,8 @@ function sendMessage(senderId, where) {
 			
 			
         
-							kq = wt.name +"\n" 
-							+ "Thời tiết hiện tại: " + dateObj.getDay() +" m \n"
+							kq = wt.name +"\n\n" 
+				
 							+ "Nhiệt độ hiện tại: " + (parseInt(wt.main.temp) -273)  + " độ C \n"
 							+ "Nhiệt độ tối đa: " + (parseInt(wt.main.temp_min) -273)  + " độ C \n"
 							+ "Nhiệt độ tối thiểu: " +(parseInt(wt.main.temp_max) -273)  + " độ C \n"
