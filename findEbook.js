@@ -55,6 +55,21 @@ app.post('/webhook', function(req, res) {
 // G?i thông tin t?i REST API ð? tr? l?i
 function sendMessage(senderId, message) {
 	  
+	  request({url: bookAPI + message, json: true}, function(err, res, ebooks) {
+        if (err) {
+          throw err;
+        }
+
+        var index = 0;
+
+        // return 5 ebooks
+        ebooks.items.forEach(function (item) {
+          if (index < 5) {
+            
+          }
+        });
+      });
+	  
 	request({
     url: 'https://graph.facebook.com/v2.6/me/messages',
     qs: {
