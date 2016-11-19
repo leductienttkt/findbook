@@ -73,7 +73,7 @@ function sendMessage(senderId, where) {
 		}
 		catch(e)
 		{
-			kq = "Xin lỗi, Nara không hiểu ý bạn!";
+			kq = "Xin lỗi, Nara không hiểu ý bạn ahihi!";
 		}
 		
 		request({
