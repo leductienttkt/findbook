@@ -56,7 +56,7 @@ app.post('/webhook', function(req, res) {
 function sendMessage(senderId, message) {
 	  
 	 var kq = "jang";
-	  request({url: bookAPI + message, json: true}, function(err, res, ebooks) {
+	 request({url: bookAPI + message, json: true}, function(err, res, ebooks) {
         if (err) {
           throw err;
         }
@@ -67,26 +67,25 @@ function sendMessage(senderId, message) {
         ebooks.items.forEach(function (item) {
           if (index < 5) {
 			  index++;
-            kq += item.volumeInfo.title;
-          }
+			  request({
+				url: 'https://graph.facebook.com/v2.6/me/messages',
+				qs: {
+					access_token: "EAAId4GRfo2kBAMl642JQDzZB0bRXOolKl3xq76IO1A5kp6HPCg0wH41vRbDtU9p4sILBRtbNGC4twVCkS9f4PXhGHbBTYFkHlTCqDUMteLhYVI6Vdg7drJbjZC5B2pRlt5orzdAZBX2ABP8pk2ZCDMfiOrdheNKHZBgVZC5B1KwgZDZD",
+					},
+					method: 'POST',
+					json: {
+					recipient: {
+							id: senderId
+					},
+					message: {
+							text: item.volumeInfo.title
+					},
+				}
+				});
+			}
         });
-      });
-	  
-	request({
-    url: 'https://graph.facebook.com/v2.6/me/messages',
-    qs: {
-      access_token: "EAAId4GRfo2kBAMl642JQDzZB0bRXOolKl3xq76IO1A5kp6HPCg0wH41vRbDtU9p4sILBRtbNGC4twVCkS9f4PXhGHbBTYFkHlTCqDUMteLhYVI6Vdg7drJbjZC5B2pRlt5orzdAZBX2ABP8pk2ZCDMfiOrdheNKHZBgVZC5B1KwgZDZD",
-    },
-    method: 'POST',
-    json: {
-      recipient: {
-        id: senderId
-      },
-      message: {
-        text: kq
-      },
-    }
-  });
+      });  
+	
 }
 
 
