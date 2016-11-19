@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 });
 
 // Ðây là ðo?n code ð? t?o Webhook
-/*app.get('/webhook', function(req, res) {
+app.get('/webhook', function(req, res) {
   if (req.query['hub.verify_token'] === 'tiendien35') {
     res.send(req.query['hub.challenge']);
   }
@@ -64,7 +64,7 @@ function sendMessage(senderId, message) {
       },
     }
   });
-}*/
+}
 
 /*app.set('port', process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 3002);
 app.set('ip', process.env.OPENSHIFT_NODEJS_IP || process.env.IP || "127.0.0.1");
