@@ -95,7 +95,7 @@ function sendMessage(senderId, where) {
         if (err) {
           throw err;
         }
-		var kq = "ko tim thay";
+		var kq = "ko tim thay";//
 
         try{
 						kq = wt.name +"\n" 
