@@ -66,9 +66,9 @@ function sendMessage(senderId, message) {
         // return 5 ebooks
         ebooks.items.forEach(function (item) {
           if (index < 5) {
-            //session.send("Ebook: " + ++index + "\n");
-           // session.send("Title: " + item.volumeInfo.title);
-            //session.send("previewLink: " + item.volumeInfo.previewLink);
+            res.send("Ebook: " + ++index + "\n");
+            res.send("Title: " + item.volumeInfo.title);
+            res.send("previewLink: " + item.volumeInfo.previewLink);
 			kq = item.volumeInfo.title;
           }
         });
@@ -90,6 +90,8 @@ function sendMessage(senderId, message) {
     }
   });
 }
+
+
 
 app.set('port', process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 3002);
 app.set('ip', process.env.OPENSHIFT_NODEJS_IP || process.env.IP || "0.0.0.0");
