@@ -96,7 +96,7 @@ function sendMessage(senderId, where) {
           throw err;
         }
 		var kq = "ko tim thay";
-        if (wt != null) {
+        if (wt !== null) {
 						kq = wt.name +"\n" 
 							+ "Nhiệt độ hiện tại: " + (parseInt(wt.main.temp) -273)  + " độ C \n"
 							+ "Nhiệt độ tối đa: " + (parseInt(wt.main.temp_min) -273)  + " độ C \n"
