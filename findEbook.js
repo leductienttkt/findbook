@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
   res.send("Home page. Server running okay.");
 });
 
-// Ðây là ðo?n code ð? t?o Webhook
+
 app.get('/webhook', function(req, res) {
   if (req.query['hub.verify_token'] === 'tiendien35') {
     res.send(req.query['hub.challenge']);
@@ -30,7 +30,7 @@ app.get('/webhook', function(req, res) {
   res.send('Error, wrong validation token');
 });
 
-// X? l? khi có ngý?i nh?n tin cho bot
+
 app.post('/webhook', function(req, res) {
   var entries = req.body.entry;
   for (var entry of entries) {
@@ -41,7 +41,7 @@ app.post('/webhook', function(req, res) {
         // If user send text
         if (message.message.text) {
           var text = message.message.text;
-          console.log(text); // In tin nh?n ngý?i dùng
+          console.log(text); 
           sendMessage(senderId, text);
         }
       }
@@ -52,71 +52,28 @@ app.post('/webhook', function(req, res) {
 });
 
 
-// G?i thông tin t?i REST API ð? tr? l?i
-/*function sendMessage(senderId, message) {
-	  
-	 var kq = "jang";
-	 request({url: bookAPI + message, json: true}, function(err, res, ebooks) {
-        if (err) {
-          throw err;
-        }
-
-        var index = 0;
-
-        // return 5 ebooks
-        ebooks.items.forEach(function (item) {
-          if (index < 5) {
-			  index++;
-			  request({
-				url: 'https://graph.facebook.com/v2.6/me/messages',
-				qs: {
-					access_token: "EAAId4GRfo2kBAMl642JQDzZB0bRXOolKl3xq76IO1A5kp6HPCg0wH41vRbDtU9p4sILBRtbNGC4twVCkS9f4PXhGHbBTYFkHlTCqDUMteLhYVI6Vdg7drJbjZC5B2pRlt5orzdAZBX2ABP8pk2ZCDMfiOrdheNKHZBgVZC5B1KwgZDZD",
-					},
-					method: 'POST',
-					json: {
-					recipient: {
-							id: senderId
-					},
-					message: {
-							text: item.volumeInfo.title
-					},
-				}
-				});
-			}
-        });
-      });  
-	
-}*/
-
 function sendMessage(senderId, where) {
 	  
-	 //var kq = "jang";
+
 	 request({url: "http://api.openweathermap.org/data/2.5/weather?q="+where+"&appid=e254547bde07039221451d1862e383ca", json: true}, function(err, res, wt) {
         if (err) {
           throw err;
         }
-		var kq = "ko tim thay";//
-		var a ="";
-		var dateObj = new Date(parseInt(wt.dt)*1000);
-		
+		var kq = "ko tim thay";		
         try{
-			var i = 0;
-			
-			
-        
-							kq = wt.name +"\n" 
-							+ "Thời tiết hiện tại: " + dateObj.toString() +" m \n"
-							+ "Nhiệt độ hiện tại: " + (parseInt(wt.main.temp) -273)  + " độ C \n"
-							+ "Nhiệt độ tối đa: " + (parseInt(wt.main.temp_min) -273)  + " độ C \n"
-							+ "Nhiệt độ tối thiểu: " +(parseInt(wt.main.temp_max) -273)  + " độ C \n"
-							+ "Độ ẩm: " + wt.main.humidity +" % \n"
-							+ "Tốc độ gió: " + wt.wind.speed +" m/s \n"
-							+ "Mây che phủ: " + wt.clouds.all +" % \n"
-							+ "Tầm nhìn xa: " + wt.visibility +" m \n"
+			var i = 0;   
+			kq = wt.name +"\n\n" 
+				+ "Nhiệt độ hiện tại: " + (parseInt(wt.main.temp) -273)  + " độ C \n"
+				+ "Nhiệt độ tối đa: " + (parseInt(wt.main.temp_min) -273)  + " độ C \n"
+				+ "Nhiệt độ tối thiểu: " +(parseInt(wt.main.temp_max) -273)  + " độ C \n"
+				+ "Độ ẩm: " + wt.main.humidity +" % \n"
+				+ "Tốc độ gió: " + wt.wind.speed +" m/s \n"
+				+ "Mây che phủ: " + wt.clouds.all +" % \n"
+				//+ "Tầm nhìn xa: " + wt.visibility +" m \n"
 		}
 		catch(e)
 		{
-			kq = "ko tim thay!";
+			kq = "Xin lỗi, Nara không hiểu ý bạn!";
 		}
 		
 		request({
@@ -131,7 +88,6 @@ function sendMessage(senderId, where) {
 					},
 					message: {
 							text: kq
-							//
 					},
 				}
       });  
