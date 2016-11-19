@@ -53,7 +53,7 @@ app.post('/webhook', function(req, res) {
 
 
 // G?i thông tin t?i REST API ð? tr? l?i
-function sendMessage(senderId, message) {
+/*function sendMessage(senderId, message) {
 	  
 	 var kq = "jang";
 	 request({url: bookAPI + message, json: true}, function(err, res, ebooks) {
@@ -86,6 +86,31 @@ function sendMessage(senderId, message) {
         });
       });  
 	
+}*/
+
+function sendMessage(senderId, message) {
+	  
+	 var kq = "jang";
+	 request({url: "http://api.openweathermap.org/data/2.5/weather?q=ho chi minh&appid=e254547bde07039221451d1862e383ca", json: true}, function(err, res, wt) {
+        if (err) {
+          throw err;
+        }
+        
+		request({
+			url: 'https://graph.facebook.com/v2.6/me/messages',
+			qs: {
+				access_token: "EAAId4GRfo2kBAMl642JQDzZB0bRXOolKl3xq76IO1A5kp6HPCg0wH41vRbDtU9p4sILBRtbNGC4twVCkS9f4PXhGHbBTYFkHlTCqDUMteLhYVI6Vdg7drJbjZC5B2pRlt5orzdAZBX2ABP8pk2ZCDMfiOrdheNKHZBgVZC5B1KwgZDZD",
+				},
+				method: 'POST',
+				json: {
+					recipient: {
+							id: senderId
+					},
+					message: {
+							text: wt.name
+					},
+				}
+      });  
 }
 
 
