@@ -42,7 +42,7 @@ app.post('/webhook', function(req, res) {
         if (message.message.text) {
           var text = message.message.text;
           console.log(text); // In tin nh?n ngý?i dùng
-          sendMessage(senderId, "Tui là bot ðây: " + text);
+          sendMessage(senderId, text);
         }
       }
     }
@@ -55,6 +55,7 @@ app.post('/webhook', function(req, res) {
 // G?i thông tin t?i REST API ð? tr? l?i
 function sendMessage(senderId, message) {
 	  
+	  var kq;
 	  request({url: bookAPI + message, json: true}, function(err, res, ebooks) {
         if (err) {
           throw err;
@@ -65,7 +66,7 @@ function sendMessage(senderId, message) {
         // return 5 ebooks
         ebooks.items.forEach(function (item) {
           if (index < 5) {
-            
+            kq += item.volumeInfo.title;
           }
         });
       });
@@ -81,7 +82,7 @@ function sendMessage(senderId, message) {
         id: senderId
       },
       message: {
-        text: message
+        text: kq
       },
     }
   });
