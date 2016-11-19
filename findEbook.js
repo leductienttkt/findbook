@@ -95,7 +95,17 @@ function sendMessage(senderId, where) {
         if (err) {
           throw err;
         }
-        
+		var kq = "ko tim thay";
+        if (wt != null) {
+						kq = wt.name +"\n" 
+							+ "Nhiệt độ hiện tại: " + (parseInt(wt.main.temp) -273)  + " độ C \n"
+							+ "Nhiệt độ tối đa: " + (parseInt(wt.main.temp_min) -273)  + " độ C \n"
+							+ "Nhiệt độ tối thiểu: " +(parseInt(wt.main.temp_max) -273)  + " độ C \n"
+							+ "Độ ẩm: " + wt.main.humidity +" % \n"
+							+ "Tốc độ gió: " + wt.wind.speed +" m/s \n"
+							+ "Mây che phủ: " + wt.clouds.all +" % \n"
+							+ "Tầm nhìn xa: " + wt.visibility +" m \n"
+		}
 		request({
 			url: 'https://graph.facebook.com/v2.6/me/messages',
 			qs: {
@@ -107,14 +117,7 @@ function sendMessage(senderId, where) {
 							id: senderId
 					},
 					message: {
-							text: wt.name +"\n" 
-							+ "Nhiệt độ hiện tại: " + (parseInt(wt.main.temp) -273)  + " độ C \n"
-							+ "Nhiệt độ tối đa: " + (parseInt(wt.main.temp_min) -273)  + " độ C \n"
-							+ "Nhiệt độ tối thiểu: " +(parseInt(wt.main.temp_max) -273)  + " độ C \n"
-							+ "Độ ẩm: " + wt.main.humidity +" % \n"
-							+ "Tốc độ gió: " + wt.wind.speed +" m/s \n"
-							+ "Mây che phủ: " + wt.clouds.all +" % \n"
-							+ "Tầm nhìn xa: " + wt.visibility +" m \n"
+							text: kq
 							//
 					},
 				}
