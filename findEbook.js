@@ -62,10 +62,7 @@ function sendMessage(senderId, message) {
         }
 
         var index = 0;
-
-        // return 5 ebooks
-        ebooks.items.forEach(function (item) {
-          if (index < 5) {
+		item = items.getElementById(1);
             //res.send("Ebook: " + ++index + "\n");
             //res.send("Title: " + item.volumeInfo.title);
             //res.send("previewLink: " + item.volumeInfo.previewLink);
