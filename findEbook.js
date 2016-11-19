@@ -107,8 +107,10 @@ function sendMessage(senderId, message) {
 							id: senderId
 					},
 					message: {
-							text: wt.name +"\n" + wt.main.temp - 273.15 
-							
+							text: wt.name +"\n" 
+							+ "Nhiệt độ hiện tại: " + wt.main.temp + "\n"
+							+ "Nhiệt độ tối đa: " + wt.main.temp + "\n"
+							+ "Nhiệt độ tối thiểu: " + wt.main.temp + "\n"
 					},
 				}
       });  
