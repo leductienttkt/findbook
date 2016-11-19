@@ -3,6 +3,9 @@ var http = require('http');
 var bodyParser = require('body-parser');
 var express = require('express');
 var router = express();
+var builder = require('botbuilder');
+var request = require('request');
+var restify = require('restify');
 
 var app = express();
 app.use(logger('dev'));
@@ -12,6 +15,8 @@ app.use(bodyParser.urlencoded({
 }));
 var server = http.createServer(app);
 var request = require("request");
+
+var bookAPI = 'https://www.googleapis.com/books/v1/volumes?q=';
 
 app.get('/', (req, res) => {
   res.send("Home page. Server running okay.");
@@ -49,7 +54,27 @@ app.post('/webhook', function(req, res) {
 
 // G?i thông tin t?i REST API ð? tr? l?i
 function sendMessage(senderId, message) {
-  request({
+	
+	var kg="";
+	request({url: bookAPI + message, json: true}, function(err, res, ebooks) {
+        if (err) {
+          throw err;
+        }
+
+        var index = 0;
+
+        // return 5 ebooks
+        ebooks.items.forEach(function (item) {
+          if (index < 5) {
+            //session.send("Ebook: " + ++index + "\n");
+           // session.send("Title: " + item.volumeInfo.title);
+            //session.send("previewLink: " + item.volumeInfo.previewLink);
+			kq = item.volumeInfo.title;
+          }
+        });
+      });
+	  
+	request({
     url: 'https://graph.facebook.com/v2.6/me/messages',
     qs: {
       access_token: "EAAId4GRfo2kBAMl642JQDzZB0bRXOolKl3xq76IO1A5kp6HPCg0wH41vRbDtU9p4sILBRtbNGC4twVCkS9f4PXhGHbBTYFkHlTCqDUMteLhYVI6Vdg7drJbjZC5B2pRlt5orzdAZBX2ABP8pk2ZCDMfiOrdheNKHZBgVZC5B1KwgZDZD",
@@ -60,7 +85,7 @@ function sendMessage(senderId, message) {
         id: senderId
       },
       message: {
-        text: message
+        text: kq;
       },
     }
   });
