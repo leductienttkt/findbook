@@ -97,13 +97,15 @@ function sendMessage(senderId, where) {
         }
 		var kq = "ko tim thay";//
 		var a ="";
+		var dateObj = new Date(parseInt(wt.dt)*1000);
+		
         try{
 			var i = 0;
 			
 			
         
-						kq = wt.name +"\n" 
-							//+ "Thời tiết hiện tại: " + a +" m \n"
+							kq = wt.name +"\n" 
+							+ "Thời tiết hiện tại: " + dateObj.toGMTString +" m \n"
 							+ "Nhiệt độ hiện tại: " + (parseInt(wt.main.temp) -273)  + " độ C \n"
 							+ "Nhiệt độ tối đa: " + (parseInt(wt.main.temp_min) -273)  + " độ C \n"
 							+ "Nhiệt độ tối thiểu: " +(parseInt(wt.main.temp_max) -273)  + " độ C \n"
