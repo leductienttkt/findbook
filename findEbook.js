@@ -1,4 +1,4 @@
-var logger = require('morgan');
+﻿var logger = require('morgan');
 var http = require('http');
 var bodyParser = require('body-parser');
 var express = require('express');
@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 });
 
 // Ðây là ðo?n code ð? t?o Webhook
-app.get('/webhook', function(req, res) {
+/*app.get('/webhook', function(req, res) {
   if (req.query['hub.verify_token'] === 'tiendien35') {
     res.send(req.query['hub.challenge']);
   }
@@ -71,4 +71,4 @@ app.set('ip', process.env.OPENSHIFT_NODEJS_IP || process.env.IP || "127.0.0.1");
 
 server.listen(app.get('port'), app.get('ip'), function() {
   console.log("Chat bot server listening at %s:%d ", app.get('ip'), app.get('port'));
-});
+});*/
