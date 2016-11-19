@@ -85,7 +85,7 @@ function sendMessage(senderId, message) {
         id: senderId
       },
       message: {
-        text: kq;
+        text: kq
       },
     }
   });
