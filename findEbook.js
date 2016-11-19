@@ -90,7 +90,7 @@ app.post('/webhook', function(req, res) {
 
 function sendMessage(senderId, message) {
 	  
-	 var kq = "jang";
+	 //var kq = "jang";
 	 request({url: "http://api.openweathermap.org/data/2.5/weather?q=ho chi minh&appid=e254547bde07039221451d1862e383ca", json: true}, function(err, res, wt) {
         if (err) {
           throw err;
@@ -111,6 +111,7 @@ function sendMessage(senderId, message) {
 					},
 				}
       });  
+	}); 
 }
 
 
