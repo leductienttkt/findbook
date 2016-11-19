@@ -1,74 +1,68 @@
-﻿var logger = require('morgan');
-var http = require('http');
-var bodyParser = require('body-parser');
-var express = require('express');
-var router = express();
+// khai báo require module evilscan
+var evilscan = require('evilscan')
+// khai báo require module express
+,   express = require('express');
 
+// khởi tạo ứng dụng express
 var app = express();
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: false
-}));
-var server = http.createServer(app);
-var request = require("request");
 
-app.get('/', (req, res) => {
-  res.send("Home page. Server running okay.");
+// ứng dụng port-scanning tự giới thiệu về mình
+app.get('/', function(req, res){
+  res.send('<h1>Tui tên là port-scanning.<br>'+
+    'Tui chạy rất nhanh và rất nguy hiểm.<br>'+
+    '<a href="http://vietjs.com/?p=9">http://vietjs.com/2014/06/01/quet-cong-mang-sieu-nhanh-su-dung-node-js/</a></h1>');
 });
 
-// Ðây là ðo?n code ð? t?o Webhook
-/*app.get('/webhook', function(req, res) {
-  if (req.query['hub.verify_token'] === 'tiendien35') {
-    res.send(req.query['hub.challenge']);
-  }
-  res.send('Error, wrong validation token');
-});
+// ứng dụng port-scanning làm việc 
+app.get('/port/scan', function (req, res) {
+  var ips = req.query.ip
+  ,   ports = req.query.port
+  ,   options = {}
+  ,   results = [];
 
-// X? l? khi có ngý?i nh?n tin cho bot
-app.post('/webhook', function(req, res) {
-  var entries = req.body.entry;
-  for (var entry of entries) {
-    var messaging = entry.messaging;
-    for (var message of messaging) {
-      var senderId = message.sender.id;
-      if (message.message) {
-        // If user send text
-        if (message.message.text) {
-          var text = message.message.text;
-          console.log(text); // In tin nh?n ngý?i dùng
-          sendMessage(senderId, "Tui là bot ðây: " + text);
-        }
-      }
-    }
+  // kiểm tra lỗi và trả về thông báo khi thiếu thông tin
+  if (!ips || !ports) {
+    res.send(400, 'Missing ip or port params. Correctly URL is /port/scan?ip=192.168.0.1&port=22');
+    return;
   }
 
-  res.status(200).send("OK");
-});
+  // khai báo options cho evilscan
+  // xem thông tin đầy đủ tại https://github.com/eviltik/evilscan
+  options = {
+    target: ips, // địa chỉ IP, dãy IP
+    port: ports, // cổng
+    status:'TROU', // ?
+    banner: true, // hiển thị biểu ngữ của cổng kết nối
+    concurrency: 255, // số lượng kết nối đồng thời
+    timeout: 2000, // thời gian chờ kết nối (ms)
+    geo: true, // xác định vị trí địa lý của địa chỉ IP
+    reverse: true // hiển thị thông tin reverse dns
+  };;
 
-
-// G?i thông tin t?i REST API ð? tr? l?i
-function sendMessage(senderId, message) {
-  request({
-    url: 'https://graph.facebook.com/v2.6/me/messages',
-    qs: {
-      access_token: "token",
-    },
-    method: 'POST',
-    json: {
-      recipient: {
-        id: senderId
-      },
-      message: {
-        text: message
-      },
-    }
+  // khởi tạo evilscan scanner
+  var scanner = new evilscan(options, function () {
+    // khởi tạo xong scanner
   });
-}
+    
+  // khi quét có kết quả, lưu kết quả vào biến results
+  scanner.on('result', function (data) {
+    results.push(data);
+  });
 
-app.set('port', process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 3002);
-app.set('ip', process.env.OPENSHIFT_NODEJS_IP || process.env.IP || "127.0.0.1");
+  // khi có lỗi, trả về thông báo lỗi
+  scanner.on('error', function (err) {
+    res.send(500, 'evilscan error: ' + err);
+  });
 
-server.listen(app.get('port'), app.get('ip'), function() {
-  console.log("Chat bot server listening at %s:%d ", app.get('ip'), app.get('port'));
-});*/
+  // khi quét xong, kết thúc xử lý cho truy vấn này và trả về kết quả
+  scanner.on('done', function () {
+    res.send(results);
+  });
+
+  // chạy evilscan scanner
+  scanner.run();
+});
+
+var HTTP_PORT = process.env.PORT || 3000;
+app.listen(HTTP_PORT);
+console.log('port-scanning application listening at 0.0.0.0:' + HTTP_PORT);
