@@ -115,6 +115,7 @@ function sendMessage(senderId, message) {
 							+ "Tốc độ gió: " + wt.wind.speed " m/s \n"
 							+ "Mây che phủ: " + wt.clouds.all " % \n"
 							+ "Tầm nhìn xa: " + wt.visibility " m\n"
+							//
 					},
 				}
       });  
