@@ -108,9 +108,9 @@ function sendMessage(senderId, message) {
 					},
 					message: {
 							text: wt.name +"\n" 
-							+ "Nhiệt độ hiện tại: " + wt.main.temp - 273.15 + " độ C \n"
-							+ "Nhiệt độ tối đa: " + wt.main.temp - 273.15 + "độ C \n"
-							+ "Nhiệt độ tối thiểu: " + wt.main.temp -273.15 + "độ C \n"
+							+ "Nhiệt độ hiện tại: " + parseInt(wt.main.temp) - 273.15 + " độ C \n"
+							//+ "Nhiệt độ tối đa: " + wt.main.temp - 273.15 + "độ C \n"
+							//+ "Nhiệt độ tối thiểu: " + wt.main.temp -273.15 + "độ C \n"
 					},
 				}
       });  
