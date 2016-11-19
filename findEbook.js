@@ -107,7 +107,7 @@ function sendMessage(senderId, message) {
 							id: senderId
 					},
 					message: {
-							text: wt.name +"\n" + wt.weather.description
+							text: wt.name +"\n" + wt.main.temp - 273.15 
 							
 					},
 				}
