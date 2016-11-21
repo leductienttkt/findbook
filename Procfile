@@ -1,1 +1,1 @@
-web: node findEbook.js
+web: node weather.js

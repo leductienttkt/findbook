@@ -2,10 +2,10 @@
   "name": "findbook",
   "version": "1.0.0",
   "description": "ahihi",
-  "main": "findEbook.js",
+  "main": "weather.js",
   "scripts": {
     "test": "aaaa",
-    "start": "node findEbook.js"
+    "start": "weather.js"
   },
   "repository": {
     "type": "git",

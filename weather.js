@@ -64,8 +64,8 @@ function sendMessage(senderId, where) {
 			var i = 0;   
 			kq = wt.name +"\n\n" 
 				+ "Nhiệt độ hiện tại: " + (parseInt(wt.main.temp) -273)  + " độ C \n"
-				+ "Nhiệt độ tối đa: " + (parseInt(wt.main.temp_min) -273)  + " độ C \n"
-				+ "Nhiệt độ tối thiểu: " +(parseInt(wt.main.temp_max) -273)  + " độ C \n"
+				+ "Nhiệt độ tối đa: " + (parseInt(wt.main.temp_max) -273)  + " độ C \n"
+				+ "Nhiệt độ tối thiểu: " +(parseInt(wt.main.temp_min) -273)  + " độ C \n"
 				+ "Độ ẩm: " + wt.main.humidity +" % \n"
 				+ "Tốc độ gió: " + wt.wind.speed +" m/s \n"
 				+ "Mây che phủ: " + wt.clouds.all +" % \n"
